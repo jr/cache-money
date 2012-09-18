@@ -12,9 +12,9 @@ module Cash
     module InstanceMethods
       def self.included(active_record_class)
         active_record_class.class_eval do
-          after_create :add_to_caches
-          after_update :update_caches
-          after_destroy :remove_from_caches
+          after_commit_on_create :add_to_caches
+          after_commit_on_update :update_caches
+          after_commit_on_destroy :remove_from_caches
         end
       end
 

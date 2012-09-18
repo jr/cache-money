@@ -2,6 +2,7 @@ source :rubygems
 
 gem 'activerecord', '>=2.2.0', '<3.0'
 gem 'activesupport', '>=2.2.0', '<3.0'
+gem 'after_commit', '>= 1.0.6'
 
 group :development do
   gem 'actionpack', '>=2.2.0', '<3.0'
