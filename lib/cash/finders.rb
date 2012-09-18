@@ -21,7 +21,7 @@ module Cash
 
       # User.find(:first, ...), User.find_by_foo(...), User.find(:all, ...), User.find_all_by_foo(...)
       def find_every_with_cache(options)
-        if cacheable?
+        if false && cacheable? # XXX caching turned off for now
           Query::Select.perform(self, options, scope(:find))
         else
           find_every_without_cache(options)
@@ -39,7 +39,7 @@ module Cash
 
       # User.count(:all), User.count, User.sum(...)
       def calculate_with_cache(operation, column_name, options = {})
-        if cacheable?
+        if false && cacheable? # XXX caching turned off for now
           Query::Calculation.perform(self, operation, column_name, options, scope(:find))
         else
           calculate_without_cache(operation, column_name, options)
