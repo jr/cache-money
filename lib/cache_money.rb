@@ -65,6 +65,7 @@ module Cash
     def self.extended(active_record_class)
       class << active_record_class
         alias_method_chain :transaction, :cache_transaction
+        alias_method_chain :update_counters, :cache_expire
       end
     end
 
@@ -81,6 +82,11 @@ module Cash
       else
         transaction_without_cache_transaction(*args, &block)
       end
+    end
+
+    def update_counters_with_cache_expire(id, counters)
+      update_counters_without_cache_expire(id, counters)
+      expire("id/#{id}") if cacheable?
     end
   end
 end
